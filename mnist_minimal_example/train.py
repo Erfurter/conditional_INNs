@@ -10,7 +10,7 @@ import model
 import data
 
 cinn = model.MNIST_cINN(5e-4)
-cinn.cuda()
+# cinn.cuda()
 scheduler = torch.optim.lr_scheduler.MultiStepLR(cinn.optimizer, milestones=[20, 40], gamma=0.1)
 
 N_epochs = 60
@@ -20,7 +20,7 @@ nll_mean = []
 print('Epoch\tBatch/Total \tTime \tNLL train\tNLL val\tLR')
 for epoch in range(N_epochs):
     for i, (x, l) in enumerate(data.train_loader):
-        x, l = x.cuda(), l.cuda()
+        # x, l = x.cuda(), l.cuda()
         z, log_j = cinn(x, l)
 
         nll = torch.mean(z**2) / 2 - torch.mean(log_j) / model.ndim_total

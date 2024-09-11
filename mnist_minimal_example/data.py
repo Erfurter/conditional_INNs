@@ -23,8 +23,8 @@ test_data = torchvision.datasets.MNIST(data_dir, train=False, download=True,
 
 # Sample a fixed batch of 1024 validation examples
 val_x, val_l = zip(*list(train_data[i] for i in range(1024)))
-val_x = torch.stack(val_x, 0).cuda()
-val_l = torch.LongTensor(val_l).cuda()
+val_x = torch.stack(val_x, 0)
+val_l = torch.LongTensor(val_l)
 
 # Exclude the validation batch from the training data
 train_data.data = train_data.data[1024:]
